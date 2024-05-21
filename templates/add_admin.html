@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div class="container">
+    <!-- <div class="row justify-content-center"> -->
+      <div class="col-lg-20">
+        <!-- Form Basic -->
+        <div class="card mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h3 class="h3 mb-0 text-gray-800" style="text-align: center;">Add Admin details</h3>
+          </div>
+          <div class="card-body">
+            <form method="post" role="form"  enctype="multipart/form-data"  class="row g-3 shadow border border-radius-xl m-auto px-2 mx-2 mb-5 pb-3 pt-2 border-light text-secondary form-letter">
+              {% csrf_token %}
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label >User name<span class="text-danger">*</span></label>
+                  {{ form.username }}
+                  {{ form.username.errors }}
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-label">First Name<span class="text-danger">*</span></label>
+                  {{ form.first_name }}
+                  {{ form.first_name.errors }}
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-label">Last Name<span class="text-danger">*</span></label>
+                  {{ form.last_name }}
+                  {{ form.last_name.errors }}
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-label">Email<span class="text-danger">*</span></label>
+                  {{ form.email }}
+                  {{ form.email.errors }}
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-label">Password<span class="text-danger">*</span></label>
+                  {{ form.password }}
+                  {{ form.password.errors }}
+                </div>
+              </div>
+             
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    <!-- </div> -->
+  </div>
+</body>
+</html>
+{% endblock %}

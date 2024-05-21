@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+ <style>
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Ensure borders don't collapse into each other */
+        }
+        th, td {
+            border: 1px solid black; /* Black borders for columns */
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .btn {
+            padding: 5px 10px;
+            margin: 2px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid" id="container-wrapper">
+    <div class="container-fluid" id="container-wrapper">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Employee Details</h1>
+            <a href="{% url 'employee_add' %}">
+                <button class="btn btn-success" type="button">
+                    <i class="bi bi-plus-square pe-2 fw-bold"></i>Add Employee
+                </button>
+            </a>
+        </div>
+
+          
+
+          <div class="row">
+            <div class="col-lg-12 mb-4">
+            
+              <div class="card">
+
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush" class="table text-secondary data-table-1" style="width: 100%
+                  ">
+                    <thead class="thead-light">
+                        <tr>
+                            <th style="text-align:center;">Employee No</th>
+                            <th style="text-align:center;">Name</th>
+                            <th style="text-align:center;">Address</th>
+                            <th style="text-align:center;">Start Date</th>
+                            <th style="text-align:center;">End Date</th>
+                            <th style="text-align:center;">Status</th>
+                            <th style="text-align:center;">Photo</th>
+                            
+                        </tr>
+                      
+                    </thead>
+                    <tbody>
+                        {% for employee in employees %}
+                        <tr>
+                            <td style="text-align:center;">{{ employee.emp_no }}</td>
+                            <td style="text-align:center;">{{ employee.name }}</td>
+                            <td style="text-align:center;">{{ employee.address }}</td>
+                            <td style="text-align:center;">{{ employee.emp_start_date }}</td>
+                            <td style="text-align:center;">{{ employee.emp_end_date }}</td>
+                            <td style="text-align:center;">{{ employee.status }}</td>
+                            <td style="text-align:center;">
+                                {% if employee.photo %}
+                                    <img src="{{ employee.photo.url }}" alt="Employee Photo" style="max-height: 100px;">
+                                {% else %}
+                                    No Photo
+                                {% endif %}
+                            </td>
+                            <td style="text-align:center;">
+                                <form action="{% url 'employee_edit' employee.emp_no %}">
+                                    <button type="submit" class="btn btn-success" >Edit</button>
+                                </form>
+                            </td>
+                            <td style="text-align:center;">
+                                <form action="{% url 'employee_delete' employee.emp_no %}">
+                                    <button type="submit" class="btn btn-success" >Delete</button>
+                                </form>
+                            </td>
+                           
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer"></div>
+              </div>
+            </div>
+          </div>
+          <!--Row-->
+
+          <!-- Modal Logout -->
+          <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to logout?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                  <a href="login.html" class="btn btn-primary">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+</body>
+</html>
+{% endblock %}
