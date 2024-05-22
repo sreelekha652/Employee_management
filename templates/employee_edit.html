@@ -18,13 +18,7 @@
           <div class="card-body">
             <form method="post" role="form"  enctype="multipart/form-data"  class="row g-3 shadow border border-radius-xl m-auto px-2 mx-2 mb-5 pb-3 pt-2 border-light text-secondary form-letter">
               {% csrf_token %}
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label >Employee Number<span class="text-danger">*</span></label>
-                  {{ form.emp_no }}
-                  {{ form.emp_no.errors }}
-                </div>
-              </div>
+             
               <div class="col-md-12">
                 <div class="form-group">
                   <label class="form-label">Employee Name<span class="text-danger">*</span></label>
